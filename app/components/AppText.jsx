@@ -1,8 +1,8 @@
 import React from "react";
 import { Platform, StyleSheet, Text } from "react-native";
 
-const AppText = ({ children }) => {
-  return <Text style={styles.text}>{children}</Text>;
+const AppText = ({ children, title, style }) => {
+  return <Text style={[styles.text, style]}>{title}</Text>;
 };
 
 export default AppText;
