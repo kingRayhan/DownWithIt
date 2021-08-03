@@ -34,9 +34,25 @@ const demo_messages = [
 
 const Messages = () => {
   let [messages, setMessages] = useState(demo_messages);
+  let [refreshing, setRefreshing] = useState(false);
 
   const handleDeleteMessage = (message) => {
+    // Delete from state
     setMessages(messages.filter((m) => m.id != message.id));
+
+    // Delete from server
+    // TODO:
+  };
+
+  const handlePullRefresh = () => {
+    const newMsg = {
+      id: Date.now(),
+      title: "t1",
+      descriotion: "d1",
+      image: require("../assets/mosh.jpg"),
+    };
+
+    setMessages([newMsg, ...messages]);
   };
 
   return (
@@ -55,6 +71,8 @@ const Messages = () => {
             )}
           />
         )}
+        refreshing={refreshing}
+        onRefresh={handlePullRefresh}
         ItemSeparatorComponent={ListSperator}
       />
     </Screen>

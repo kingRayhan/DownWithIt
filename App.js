@@ -8,9 +8,15 @@ import {
 } from "react-native";
 import AppButton from "./app/components/AppButton";
 import AppCard from "./app/components/AppCard";
+import AppIcon from "./app/components/AppIcon";
 import AppText from "./app/components/AppText";
+import AppTextInput from "./app/components/AppTextInput";
+import ListItem from "./app/components/ListItem";
+import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
-import Messages from "./app/screens/Messages";
+import ListingScreen from "./app/screens/ListingScreen";
+import MessagesScreen from "./app/screens/MessagesScreen";
+import MyAccount from "./app/screens/MyAccount";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 
@@ -18,16 +24,13 @@ const App = () => {
   // return <WelcomeScreen />;
   // return <ListingDetailsScreen />;
   // return <ViewImageScreen />;
-  return <Messages />;
-  // return (
-  //   <View style={styles.container}>
-  //     <AppCard
-  //       title="Red jacket for you"
-  //       subtitle="$100"
-  //       image={require("./app/assets/jacket.jpg")}
-  //     />
-  //   </View>
-  // );
+  // return <MessagesScreen />;
+  // return <ListingScreen />;
+  return (
+    <Screen>
+      <AppTextInput placeholder="Username" icon="email" />
+    </Screen>
+  );
 };
 
 export default App;

@@ -1,17 +1,25 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-const AppCard = ({ title, subtitle, image }) => {
+const AppCard = ({ title, subtitle, image, onPress }) => {
   return (
-    <View style={styles.card}>
-      <Image style={styles.image} source={image} />
-      <View style={styles.detailsContainer}>
-        <AppText style={styles.title} title={title} />
-        <AppText style={styles.subtitle} title={subtitle} />
+    <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
+      <View style={styles.card}>
+        <Image style={styles.image} source={image} />
+        <View style={styles.detailsContainer}>
+          <AppText style={styles.title} title={title} />
+          <AppText style={styles.subtitle} title={subtitle} />
+        </View>
       </View>
-    </View>
+    </TouchableHighlight>
   );
 };
 
