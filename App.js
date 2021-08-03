@@ -9,12 +9,13 @@ import {
 import AppButton from "./app/components/AppButton";
 import AppCard from "./app/components/AppCard";
 import AppIcon from "./app/components/AppIcon";
-import AppPicker from "./app/components/AppPicker";
+
 import AppText from "./app/components/AppText";
-import AppTextInput from "./app/components/AppTextInput";
+import AppPicker from "./app/components/Form/AppPicker";
 import ListItem from "./app/components/ListItem";
 import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 import ListingScreen from "./app/screens/ListingScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
@@ -45,7 +46,8 @@ const App = () => {
   // return <ViewImageScreen />;
   // return <MessagesScreen />;
   // return <ListingScreen />;
-  return <LoginScreen />;
+  // return <LoginScreen />;
+  return <ListingEditScreen />;
 
   // return (
   //   <Screen>

@@ -15,8 +15,8 @@ const WelcomeScreen = () => {
       </View>
 
       <View style={styles.buttons}>
-        <AppButton>Login</AppButton>
-        <AppButton color="secondary">Register</AppButton>
+        <AppButton title="Login" />
+        <AppButton color="secondary" title="Register" />
       </View>
     </ImageBackground>
   );

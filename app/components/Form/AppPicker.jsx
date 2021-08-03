@@ -9,11 +9,13 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import colors from "../config/colors";
-import defaultStyles from "../config/defaultStyles";
-import AppText from "./AppText";
+import colors from "../../config/colors";
+
+import defaultStyles from "../../config/defaultStyles";
+import AppText from "../AppText";
 import PickerItem from "./PickerItem";
-import Screen from "./Screen";
+import Screen from "../Screen";
+import AppFlatButton from "../AppFlatButton";
 
 const AppPicker = ({
   icon,
@@ -38,9 +40,11 @@ const AppPicker = ({
             />
           )}
 
-          <AppText style={styles.text}>
-            {selectedItem ? selectedItem.label : placeholder}
-          </AppText>
+          {selectedItem ? (
+            <AppText style={styles.text}>{selectedItem.label}</AppText>
+          ) : (
+            <AppText style={styles.placeholder}>{placeholder}</AppText>
+          )}
 
           <MaterialCommunityIcons
             size={20}
@@ -52,7 +56,12 @@ const AppPicker = ({
       </TouchableWithoutFeedback>
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
-          <Button title="close" onPress={() => setModalVisible(false)} />
+          <AppFlatButton
+            icon="close"
+            title="close"
+            color={colors.danger}
+            onPress={() => setModalVisible(false)}
+          />
 
           <FlatList
             data={items}
@@ -87,6 +96,11 @@ const styles = StyleSheet.create({
   },
   text: {
     ...defaultStyles.text,
+    flex: 1,
+  },
+  placeholder: {
+    ...defaultStyles.text,
+    color: defaultStyles.colors.medium,
     flex: 1,
   },
   icon: {},
