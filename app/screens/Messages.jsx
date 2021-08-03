@@ -1,21 +1,15 @@
-import React from "react";
-import {
-  FlatList,
-  StyleSheet,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-  View,
-} from "react-native";
+import React, { useState } from "react";
+import { FlatList, StyleSheet } from "react-native";
 import ListDeleteAction from "../components/ListDeleteAction";
 import ListItem from "../components/ListItem";
+import Screen from "../components/Screen";
 import ListSperator from "../components/ListSperator";
 
-const messages = [
+const demo_messages = [
   {
     id: 1,
-    title: "t1",
-    descriotion: "d1",
+    title: "heyyy vai",
+    descriotion: "d1 2",
     image: require("../assets/mosh.jpg"),
   },
   {
@@ -39,8 +33,14 @@ const messages = [
 ];
 
 const Messages = () => {
+  let [messages, setMessages] = useState(demo_messages);
+
+  const handleDeleteMessage = (message) => {
+    setMessages(messages.filter((m) => m.id != message.id));
+  };
+
   return (
-    <SafeAreaView style={styles.screen}>
+    <Screen>
       <FlatList
         data={messages}
         keyExtractor={(message) => message.id.toString()}
@@ -50,19 +50,17 @@ const Messages = () => {
             title={item.title}
             subtitle={item.descriotion}
             image={item.image}
-            renderRightActions={ListDeleteAction}
+            renderRightActions={() => (
+              <ListDeleteAction onPress={() => handleDeleteMessage(item)} />
+            )}
           />
         )}
         ItemSeparatorComponent={ListSperator}
       />
-    </SafeAreaView>
+    </Screen>
   );
 };
 
 export default Messages;
 
-const styles = StyleSheet.create({
-  screen: {
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-});
+const styles = StyleSheet.create({});
