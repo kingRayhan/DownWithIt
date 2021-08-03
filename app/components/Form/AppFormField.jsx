@@ -4,11 +4,12 @@ import { StyleSheet } from "react-native";
 import AppInputErrorMessage from "./AppInputErrorMessage";
 import AppTextInput from "./AppTextInput";
 
-const AppFormField = ({ name, ...otherProps }) => {
+const AppFormField = ({ name, width, ...otherProps }) => {
   const { errors, setFieldTouched, touched, handleChange } = useFormikContext();
   return (
     <>
       <AppTextInput
+        width={width}
         onBlur={() => setFieldTouched(name)}
         onChangeText={handleChange(name)}
         {...otherProps}

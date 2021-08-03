@@ -64,7 +64,7 @@ const Messages = () => {
           <ListItem
             onPress={() => console.log("message selected", item)}
             title={item.title}
-            subtitle={item.descriotion}
+            subTitle={item.descriotion}
             image={item.image}
             renderRightActions={() => (
               <ListDeleteAction onPress={() => handleDeleteMessage(item)} />

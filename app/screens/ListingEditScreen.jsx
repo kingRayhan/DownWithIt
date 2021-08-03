@@ -2,6 +2,7 @@ import { useFormikContext } from "formik";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Yup from "yup";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 
 import AppForm from "../components/Form/AppForm";
 import AppFormField from "../components/Form/AppFormField";
@@ -95,13 +96,18 @@ const ListingEditScreen = () => {
         <AppFormField maxLength={255} name="title" placeholder="Title" />
         <AppFormField
           keyboardType="numeric"
-          maxLength={8}
+          maxLength={5}
+          icon="currency-usd"
           name="price"
+          width={120}
           placeholder="Price"
         />
         <AppFormPicker
           name="category"
           items={categories}
+          numColumns={3}
+          PickerItemComponent={CategoryPickerItem}
+          icon="apps"
           placeholder="Category"
           width="50%"
         />

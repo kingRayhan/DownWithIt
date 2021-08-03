@@ -5,9 +5,9 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import colors from "../../config/colors";
 import defaultStyles from "../../config/defaultStyles";
 
-const AppTextInput = ({ icon, ...otherProps }) => {
+const AppTextInput = ({ icon, width = "100%", ...otherProps }) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width }]}>
       {icon && (
         <View style={styles.iconContainer}>
           <MaterialCommunityIcons size={20} name={icon} color={colors.dark} />
