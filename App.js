@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Platform,
   SafeAreaView,
@@ -9,28 +9,55 @@ import {
 import AppButton from "./app/components/AppButton";
 import AppCard from "./app/components/AppCard";
 import AppIcon from "./app/components/AppIcon";
+import AppPicker from "./app/components/AppPicker";
 import AppText from "./app/components/AppText";
 import AppTextInput from "./app/components/AppTextInput";
 import ListItem from "./app/components/ListItem";
 import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingScreen from "./app/screens/ListingScreen";
+import LoginScreen from "./app/screens/LoginScreen";
 import MessagesScreen from "./app/screens/MessagesScreen";
 import MyAccount from "./app/screens/MyAccount";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 
+const categories = [
+  {
+    label: "Furniture",
+    value: 1,
+  },
+  {
+    label: "Clothing",
+    value: 2,
+  },
+  {
+    label: "Camara",
+    value: 3,
+  },
+];
+
 const App = () => {
+  const [item, setItem] = useState(categories[0]);
+
   // return <WelcomeScreen />;
   // return <ListingDetailsScreen />;
   // return <ViewImageScreen />;
   // return <MessagesScreen />;
   // return <ListingScreen />;
-  return (
-    <Screen>
-      <AppTextInput placeholder="Username" icon="email" />
-    </Screen>
-  );
+  return <LoginScreen />;
+
+  // return (
+  //   <Screen>
+  //     <AppPicker
+  //       selectedItem={item}
+  //       onSelectItem={setItem}
+  //       icon="apps"
+  //       placeholder="Categories"
+  //       items={categories}
+  //     />
+  //   </Screen>
+  // );
 };
 
 export default App;

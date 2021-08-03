@@ -8,12 +8,9 @@ const AppTextInput = ({ icon, ...otherProps }) => {
   return (
     <View style={styles.container}>
       {icon && (
-        <MaterialCommunityIcons
-          size={20}
-          name={icon}
-          styles={styles.icon}
-          color={colors.dark}
-        />
+        <View style={styles.iconContainer}>
+          <MaterialCommunityIcons size={20} name={icon} color={colors.dark} />
+        </View>
       )}
 
       <TextInput style={styles.textInput} {...otherProps} />
@@ -36,5 +33,7 @@ const styles = StyleSheet.create({
   textInput: {
     ...defaultStyles.text,
   },
-  icon: {},
+  iconContainer: {
+    paddingRight: 10,
+  },
 });

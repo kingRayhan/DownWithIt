@@ -15,8 +15,8 @@ const AppCard = ({ title, subtitle, image, onPress }) => {
       <View style={styles.card}>
         <Image style={styles.image} source={image} />
         <View style={styles.detailsContainer}>
-          <AppText style={styles.title} title={title} />
-          <AppText style={styles.subtitle} title={subtitle} />
+          <AppText style={styles.title}>{title}</AppText>
+          <AppText style={styles.subtitle}>{subtitle}</AppText>
         </View>
       </View>
     </TouchableHighlight>
