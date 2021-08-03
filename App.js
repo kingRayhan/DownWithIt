@@ -9,20 +9,25 @@ import {
 import AppButton from "./app/components/AppButton";
 import AppCard from "./app/components/AppCard";
 import AppText from "./app/components/AppText";
+import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
+import Messages from "./app/screens/Messages";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 const App = () => {
   // return <WelcomeScreen />;
-  return (
-    <View style={styles.container}>
-      <AppCard
-        title="Red jacket for you"
-        subtitle="$100"
-        image={require("./app/assets/jacket.jpg")}
-      />
-    </View>
-  );
+  // return <ListingDetailsScreen />;
+  // return <ViewImageScreen />;
+  return <Messages />;
+  // return (
+  //   <View style={styles.container}>
+  //     <AppCard
+  //       title="Red jacket for you"
+  //       subtitle="$100"
+  //       image={require("./app/assets/jacket.jpg")}
+  //     />
+  //   </View>
+  // );
 };
 
 export default App;
