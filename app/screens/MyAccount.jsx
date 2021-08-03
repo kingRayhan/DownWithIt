@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import AppIcon from "../components/AppIcon";
-import ListItem from "../components/ListItem";
-import ListSperator from "../components/ListSperator";
+import ListItem from "../components/Listing/ListItem";
+import ListSperator from "../components/Listing/ListSperator";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 

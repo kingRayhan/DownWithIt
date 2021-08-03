@@ -12,7 +12,7 @@ import AppIcon from "./app/components/AppIcon";
 
 import AppText from "./app/components/AppText";
 import AppPicker from "./app/components/Form/AppPicker";
-import ListItem from "./app/components/ListItem";
+import ImageInput from "./app/components/Form/AppImageInput";
 import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
@@ -40,6 +40,7 @@ const categories = [
 
 const App = () => {
   const [item, setItem] = useState(categories[0]);
+  const [image, setImage] = useState(null);
 
   // return <WelcomeScreen />;
   // return <ListingDetailsScreen />;
@@ -47,7 +48,7 @@ const App = () => {
   // return <MessagesScreen />;
   // return <ListingScreen />;
   // return <LoginScreen />;
-  return <ListingEditScreen />;
+  // return <ListingEditScreen />;
   // return <MyAccount />;
 
   // return (
@@ -61,6 +62,12 @@ const App = () => {
   //     />
   //   </Screen>
   // );
+
+  return (
+    <Screen>
+      <ImageInput onChangeImage={setImage} imageUri={image} />
+    </Screen>
+  );
 };
 
 export default App;
