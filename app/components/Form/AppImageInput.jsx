@@ -4,7 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 import { Alert, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import colors from "../../config/colors";
 
-const ImageInput = ({ imageUri = "", onChangeImage }) => {
+const ImageInput = ({ imageUri = null, onChangeImage }) => {
   const getPermission = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) {

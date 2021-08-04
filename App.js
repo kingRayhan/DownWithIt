@@ -13,6 +13,8 @@ import AppIcon from "./app/components/AppIcon";
 import AppText from "./app/components/AppText";
 import AppPicker from "./app/components/Form/AppPicker";
 import ImageInput from "./app/components/Form/AppImageInput";
+import AppImageInputList from "./app/components/Form/AppImageInputList";
+
 import Screen from "./app/components/Screen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
@@ -39,8 +41,15 @@ const categories = [
 ];
 
 const App = () => {
-  const [item, setItem] = useState(categories[0]);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
+
+  const handleAddImage = (uri) => {
+    setImages([...images, uri]);
+  };
+
+  const handleDeleteImage = (uri) => {
+    setImages(images.filter((u) => u !== uri));
+  };
 
   // return <WelcomeScreen />;
   // return <ListingDetailsScreen />;
@@ -65,21 +74,13 @@ const App = () => {
 
   return (
     <Screen>
-      <ImageInput onChangeImage={setImage} imageUri={image} />
+      <AppImageInputList
+        imageUris={images}
+        onAddImage={handleAddImage}
+        onDeleteImage={handleDeleteImage}
+      />
     </Screen>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    // padding: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-    // flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
-    backgroundColor: "#f8f4f4",
-    padding: 20,
-    paddingTop: 100,
-  },
-});
