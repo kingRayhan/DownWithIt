@@ -57,7 +57,7 @@ const App = () => {
   // return <MessagesScreen />;
   // return <ListingScreen />;
   // return <LoginScreen />;
-  // return <ListingEditScreen />;
+  return <ListingEditScreen />;
   // return <MyAccount />;
 
   // return (
@@ -72,15 +72,15 @@ const App = () => {
   //   </Screen>
   // );
 
-  return (
-    <Screen>
-      <AppImageInputList
-        imageUris={images}
-        onAddImage={handleAddImage}
-        onDeleteImage={handleDeleteImage}
-      />
-    </Screen>
-  );
+  // return (
+  //   <Screen>
+  //     <AppImageInputList
+  //       imageUris={images}
+  //       onAddImage={handleAddImage}
+  //       onDeleteImage={handleDeleteImage}
+  //     />
+  //   </Screen>
+  // );
 };
 
 export default App;
