@@ -6,6 +6,7 @@ import FeedNavigator from "./FeedNavigator";
 import AccountNavigator from "./AccountNavigator";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import NewListTabButton from "./NewListTabButton";
+import routes from "./routes";
 
 const Tabs = createBottomTabNavigator();
 
@@ -13,7 +14,7 @@ const AppTabNavigator = () => {
   return (
     <Tabs.Navigator screenOptions={{ headerShown: false }}>
       <Tabs.Screen
-        name="Feed"
+        name={routes.LISTING}
         component={FeedNavigator}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -22,18 +23,18 @@ const AppTabNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="listing_edit"
+        name={routes.LISTING_EDIT}
         component={ListingEditScreen}
         options={({ navigation }) => ({
           tabBarButton: () => (
             <NewListTabButton
-              onPress={() => navigation.navigate("listing_edit")}
+              onPress={() => navigation.navigate(routes.LISTING_EDIT)}
             />
           ),
         })}
       />
       <Tabs.Screen
-        name="my_account"
+        name="account_navigator"
         component={AccountNavigator}
         options={{
           tabBarIcon: ({ size, color }) => (
