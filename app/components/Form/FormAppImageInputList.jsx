@@ -15,13 +15,14 @@ const FormAppImageInputList = ({ name }) => {
   } = useFormikContext();
 
   const handleAdd = (uri) => {
+    console.log("handleAdd", uri);
     setFieldValue(name, [...values[name], uri]);
   };
 
   const handleRemoveImage = (uri) => {
     setFieldValue(
       name,
-      values[name].map((imageUri) => imageUri !== uri)
+      values[name].filter((imageUri) => imageUri != uri)
     );
   };
 
