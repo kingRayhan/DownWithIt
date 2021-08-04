@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import * as Yup from "yup";
 import CategoryPickerItem from "../components/CategoryPickerItem";
@@ -10,6 +10,7 @@ import FormAppImageInputList from "../components/Form/FormAppImageInputList";
 import AppFormPicker from "../components/Form/AppFormPicker";
 import AppFormSubmitButton from "../components/Form/AppFormSubmitButton";
 import Screen from "../components/Screen";
+import useLocation from "../hooks/useLocation";
 
 const categories = [
   {
@@ -77,8 +78,10 @@ const validationSchema = Yup.object().shape({
 });
 
 const ListingEditScreen = () => {
+  const location = useLocation();
+
   const handleFormSubmission = (values) => {
-    console.log("Form submitted", values);
+    console.log("Form submitted", { values, location });
   };
 
   return (

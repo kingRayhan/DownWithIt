@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     ...defaultStyles.text,
+    flex: 1,
   },
   iconContainer: {
     paddingRight: 10,
