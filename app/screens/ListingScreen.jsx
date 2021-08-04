@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import AppCard from "../components/AppCard";
 import Screen from "../components/Screen";
@@ -32,6 +33,8 @@ const listing = [
 ];
 
 const ListingScreen = () => {
+  const navigation = useNavigation();
+
   const handlePullRefresh = () => {
     console.log("pull");
   };
@@ -45,6 +48,7 @@ const ListingScreen = () => {
             title={item.title}
             subtitle={"$" + item.price}
             image={item.image}
+            onPress={() => navigation.navigate("listing_details", item)}
           />
         )}
         refreshing={false}

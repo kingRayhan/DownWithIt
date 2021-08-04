@@ -1,5 +1,6 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import AppIcon from "../components/AppIcon";
 import ListItem from "../components/Listing/ListItem";
@@ -21,10 +22,13 @@ const menuItems = [
       name: "email",
       backgroundColor: colors.secondary,
     },
+    targetedScreen: "messages",
   },
 ];
 
-const MyAccount = () => {
+const AccountScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -49,6 +53,7 @@ const MyAccount = () => {
                   backgroundColor={item.icon.backgroundColor}
                 />
               }
+              onPress={() => navigation.navigate(item.targetedScreen)}
             />
           )}
         />
@@ -64,7 +69,7 @@ const MyAccount = () => {
   );
 };
 
-export default MyAccount;
+export default AccountScreen;
 
 const styles = StyleSheet.create({
   screen: {
