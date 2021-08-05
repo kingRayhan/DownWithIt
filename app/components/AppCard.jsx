@@ -1,13 +1,14 @@
 import React from "react";
-import { Image, StyleSheet, TouchableHighlight, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
+import { Image } from "react-native-expo-image-cache";
 import colors from "../config/colors";
 import AppText from "./AppText";
 
-const AppCard = ({ title, subtitle, imageUri, onPress }) => {
+const AppCard = ({ title, subtitle, imageUri, imagePreviewUri, onPress }) => {
   return (
     <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
       <View style={styles.card}>
-        <Image style={styles.image} source={{ uri: imageUri }} />
+        <Image style={styles.image} uri={imageUri} preview={imagePreviewUri} />
         <View style={styles.detailsContainer}>
           <AppText style={styles.title}>{title}</AppText>
           <AppText style={styles.subtitle}>{subtitle}</AppText>

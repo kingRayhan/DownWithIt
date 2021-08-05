@@ -1,7 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
+import { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import AuthContext from "../auth/AuthContext";
 import AppIcon from "../components/AppIcon";
 import ListItem from "../components/Listing/ListItem";
 import ListSperator from "../components/Listing/ListSperator";
@@ -29,13 +31,14 @@ const menuItems = [
 
 const AccountScreen = () => {
   const navigation = useNavigation();
+  const authContext = useContext(AuthContext);
 
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Mosh Hamedani"
-          subTitle="mosh@gmail.com"
+          title={authContext.user.name}
+          subTitle={authContext.user.email}
           image={require("../assets/mosh.jpg")}
         />
       </View>
@@ -62,6 +65,7 @@ const AccountScreen = () => {
 
       <ListItem
         title="logout"
+        onPress={() => authContext.setUser(null)}
         IconComponent={
           <AppIcon name="logout" backgroundColor="#ffe66d" iconColor="#000" />
         }

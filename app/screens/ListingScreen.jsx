@@ -50,6 +50,7 @@ const ListingScreen = () => {
               title={item.title}
               subtitle={"$" + item.price}
               imageUri={item.images[0].url}
+              imagePreviewUri={item.images[0].thumbnail}
               onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
             />
           )}

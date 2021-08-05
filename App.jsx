@@ -1,26 +1,39 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Netinfo, { useNetInfo } from "@react-native-community/netinfo";
+import jwtDecode from "jwt-decode";
 
 import AuthNavigator from "./app/navigation/AuthNavigator";
 import theme from "./app/navigation/theme";
 import AppTabNavigator from "./app/navigation/AppTabNavigator";
 
-import AlertRibon from "./app/components/AlertRibon";
+import OfflineNotice from "./app/components/OfflineNotice";
+import AuthContext from "./app/auth/AuthContext";
+import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
+import AuthStorage from "./app/auth/storage";
 
 const App = () => {
-  const netinfo = useNetInfo();
+  const [user, setUser] = useState(null);
+
+  const restoreUser = async () => {
+    const token = await AuthStorage.getToken();
+
+    if (!token) return;
+
+    setUser(jwtDecode(token));
+  };
+
+  useEffect(() => {
+    restoreUser();
+  }, []);
 
   return (
-    <NavigationContainer theme={theme}>
-      <AlertRibon
-        visible={!netinfo.isInternetReachable}
-        message="Unreachable internet"
-      />
-
-      {/* <AuthNavigator /> */}
-      <AppTabNavigator />
-    </NavigationContainer>
+    <AuthContext.Provider value={{ user, setUser }}>
+      <NavigationContainer theme={theme}>
+        <OfflineNotice />
+        {user ? <AppTabNavigator /> : <AuthNavigator />}
+      </NavigationContainer>
+    </AuthContext.Provider>
   );
 
   // return null;
