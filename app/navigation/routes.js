@@ -1,4 +1,4 @@
-export default Object.freeze({
+const routes = {
   LISTING: "LISTING",
   LISTING_DETAILS: "LISTING_DETAILS",
   LISTING_EDIT: "LISTING_EDIT",
@@ -11,4 +11,6 @@ export default Object.freeze({
   // Account
   ACCOUNT: "ACCOUNT",
   MESSAGES: "MESSAGES",
-});
+};
+
+export default Object.freeze(routes);

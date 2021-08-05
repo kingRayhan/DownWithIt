@@ -2,6 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import ListingScreen from "../screens/ListingScreen";
 import ListingDetailsScreen from "../screens/ListingDetailsScreen";
+import routes from "./routes";
+import ListingEditScreen from "../screens/ListingEditScreen";
 
 const Stack = createStackNavigator();
 
@@ -10,8 +12,13 @@ const FeedNavigator = () => {
     <Stack.Navigator
       screenOptions={{ presentation: "modal", headerShown: false }}
     >
-      <Stack.Screen name="listing" component={ListingScreen} />
-      <Stack.Screen name="listing_details" component={ListingDetailsScreen} />
+      <Stack.Screen name={routes.LISTING} component={ListingScreen} />
+      <Stack.Screen name={routes.LISTING_EDIT} component={ListingEditScreen} />
+
+      <Stack.Screen
+        name={routes.LISTING_DETAILS}
+        component={ListingDetailsScreen}
+      />
     </Stack.Navigator>
   );
 };

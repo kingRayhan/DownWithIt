@@ -12,6 +12,11 @@ import AppFormSubmitButton from "../components/Form/AppFormSubmitButton";
 import Screen from "../components/Screen";
 import useLocation from "../hooks/useLocation";
 
+import useAPI from "../hooks/useAPI";
+import listingAPI from "../api/listingAPI";
+import AppActivityIndicator from "../components/AppActivityIndicator";
+import ProgressScreen from "./ProgressScreen";
+
 const categories = [
   {
     backgroundColor: "#fc5c65",
@@ -80,53 +85,71 @@ const validationSchema = Yup.object().shape({
 const ListingEditScreen = () => {
   const location = useLocation();
 
-  const handleFormSubmission = (values) => {
-    console.log("Form submitted", { values, location });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [done, setDone] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const handleFormSubmission = async (values) => {
+    setDone(false);
+    const response = await listingAPI.addListing(
+      { ...values, location },
+      (progress) => setProgress(progress)
+    );
+
+    if (!response.ok) {
+      return setError(response.originalError);
+    }
+
+    setDone(true);
   };
 
   return (
     <Screen style={styles.screen}>
-      <AppForm
-        validationSchema={validationSchema}
-        onSubmit={handleFormSubmission}
-        initialValues={{
-          title: "",
-          price: "",
-          description: "",
-          category: null,
-          images: [],
-        }}
-      >
-        <FormAppImageInputList name="images" />
-        <AppFormField maxLength={255} name="title" placeholder="Title" />
-        <AppFormField
-          keyboardType="numeric"
-          maxLength={5}
-          icon="currency-usd"
-          name="price"
-          width={120}
-          placeholder="Price"
-        />
-        <AppFormPicker
-          name="category"
-          items={categories}
-          numColumns={3}
-          PickerItemComponent={CategoryPickerItem}
-          icon="apps"
-          placeholder="Category"
-          width="50%"
-        />
+      <ProgressScreen progress={progress} visible={progress != 1} />
+      {done && (
+        <AppForm
+          validationSchema={validationSchema}
+          onSubmit={handleFormSubmission}
+          initialValues={{
+            title: "",
+            price: "",
+            description: "",
+            category: null,
+            images: [],
+          }}
+        >
+          <FormAppImageInputList name="images" />
+          <AppFormField maxLength={255} name="title" placeholder="Title" />
+          <AppFormField
+            keyboardType="numeric"
+            maxLength={5}
+            icon="currency-usd"
+            name="price"
+            width={120}
+            placeholder="Price"
+          />
+          <AppFormPicker
+            name="category"
+            items={categories}
+            numColumns={3}
+            PickerItemComponent={CategoryPickerItem}
+            icon="apps"
+            placeholder="Category"
+            width="50%"
+          />
 
-        <AppFormField
-          maxLength={255}
-          multiline
-          name="description"
-          numberOfLines={3}
-          placeholder="Description"
-        />
+          <AppFormField
+            maxLength={255}
+            multiline
+            name="description"
+            numberOfLines={3}
+            placeholder="Description"
+          />
 
-        <AppFormSubmitButton title="Post" />
-      </AppForm>
+          <AppFormSubmitButton title="Post" />
+        </AppForm>
+      )}
     </Screen>
   );
 };
