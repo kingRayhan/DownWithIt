@@ -1,9 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { useContext } from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import AuthContext from "../auth/AuthContext";
+import AuthStorage from "../auth/storage";
 import AppIcon from "../components/AppIcon";
 import ListItem from "../components/Listing/ListItem";
 import ListSperator from "../components/Listing/ListSperator";
@@ -32,6 +33,21 @@ const menuItems = [
 const AccountScreen = () => {
   const navigation = useNavigation();
   const authContext = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    Alert.alert("Sure to logout?", null, [
+      {
+        text: "Logout",
+        onPress: async () => {
+          authContext.setUser(null);
+          await AuthStorage.removeToken();
+        },
+      },
+      {
+        text: "No",
+      },
+    ]);
+  };
 
   return (
     <Screen style={styles.screen}>
@@ -65,7 +81,7 @@ const AccountScreen = () => {
 
       <ListItem
         title="logout"
-        onPress={() => authContext.setUser(null)}
+        onPress={handleLogout}
         IconComponent={
           <AppIcon name="logout" backgroundColor="#ffe66d" iconColor="#000" />
         }
